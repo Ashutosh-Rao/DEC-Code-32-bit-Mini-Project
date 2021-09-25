@@ -1,1 +1,41 @@
 
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 25.09.2021 11:11:19
+// Design Name: 
+// Module Name: DSErrorLocator
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module DSErrorLocator(DEDa,DEDb,eid,eia,eib,x1,x2,y1,y2,z1,z2,di,do);
+
+input DEDa, DEDb, eid, eia, eib,di;
+input wire x2, y2, z2;
+output do,x1,y1,z1;
+
+xor(y1,eid,eia,eib);
+assign y2=y1;
+
+or(x1,DEDa, DEDb);
+assign z2=z1;
+
+assign x2=~x1;
+and(z1,x2,y2);
+
+xor(do,di,z2);
+
+endmodule
