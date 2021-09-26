@@ -1,4 +1,3 @@
-
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -21,21 +20,22 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module DSErrorLocator(DEDa,DEDb,eid,eia,eib,x1,x2,y1,y2,z1,z2,di,do);
+module DSErrorLocator(
+input DEDa, DEDb, eia,eib,eid,
+output diplus22
+);
 
-input DEDa, DEDb, eid, eia, eib,di;
-input wire x2, y2, z2;
-output do,x1,y1,z1;
+wire oo,xoro,ao,ooi;
 
-xor(y1,eid,eia,eib);
-assign y2=y1;
+or(oo,DEDa,DEDb);
 
-or(x1,DEDa, DEDb);
-assign z2=z1;
+xor(xoro,eia,eib,eid);
 
-assign x2=~x1;
-and(z1,x2,y2);
+not(ooi,oo);
 
-xor(do,di,z2);
+and(ao,ooi,xoro);
+
+xor(diplus22,ao,diplus22);
+
 
 endmodule
